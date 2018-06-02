@@ -4,11 +4,17 @@ $page = "CADASTRO";
 
 $conn = getConn();
 if($conn && $_POST) {
-  if( addProduct($conn, $_POST['nome'], $_POST['preco'], $_POST['quant']) ) {
+  $added = addProduct($conn, $_POST['nome'], $_POST['preco'], $_POST['quant'], $_POST['id_categoria']);
+
+  if( $added ) {
     header("Location: lista.php?action=add&message=success");
   } else {
     header("Location: cadastro.php?action=add&message=failed");
   }
+}
+
+if($conn) {
+  $categories = getCategories($conn);
 }
 ?>
 <!doctype html>
@@ -46,7 +52,20 @@ if($conn && $_POST) {
             <input type="text" name="preco" class="form-control" id="preco" placeholder="0.00">
           </div>
         </div>
-        
+
+        <?php while( $categ = mysqli_fetch_assoc($categories) ): ?>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="id_categoria" id="categ-<?= $categ['id'] ?>" value="<?= $categ['id'] ?>">
+
+            <label class="form-check-label" for="categ-<?= $categ['id'] ?>">
+              <?= $categ['nome'] ?>
+            </label>
+
+          </div>
+        <?php endwhile; ?>
+
+
+        <br>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
     </div>

@@ -20,7 +20,18 @@ function getProductById($conn, $id) {
 }
 
 function getProducts($conn) {
-  $query = "SELECT * FROM produtos";
+  $query = "SELECT
+              p.id,
+              p.nome AS nome_produto,
+              p.preco,
+              p.quant,
+              c.nome AS nome_categoria
+            FROM
+              produtos AS p
+            INNER JOIN
+              categorias AS c
+            ON
+              (p.id_categoria = c.id)";
   return mysqli_query($conn, $query);
 }
 
@@ -28,11 +39,11 @@ function getProduct($result) {
   return mysqli_fetch_assoc($result);
 }
 
-function addProduct($conn, $nome, $preco, $quant) {
+function addProduct($conn, $nome, $preco, $quant, $idcateg) {
   $query = "INSERT INTO produtos
-              ( nome, preco, quant )
+              ( nome, preco, quant, id_categoria )
             VALUES
-              ( '{$nome}', {$preco}, '{$quant}' )"; 
+              ( '{$nome}', {$preco}, '{$quant}', '{$idcateg}' )";
   
   return mysqli_query($conn, $query);
 }
@@ -60,3 +71,9 @@ function updateProduct($conn, $id, $nome, $quant, $preco) {
   }
   return false;
 }
+
+function getCategories($conn) {
+  $query = "SELECT * FROM categorias";
+  return mysqli_query($conn, $query);
+}
+

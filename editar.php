@@ -35,7 +35,7 @@ if($conn && $_POST) {
       <?php include_once("inc/alerts.php"); ?>
 
       <form action="editar.php" method="POST">
-        <input type="text" name="id" value="<?=$prod['id']?>">
+        <input type="hidden" name="id" value="<?=$prod['id']?>">
       
         <div class="form-row">
           <!-- Produto -->
