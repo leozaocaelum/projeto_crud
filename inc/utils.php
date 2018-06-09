@@ -31,7 +31,10 @@ function getProducts($conn) {
             INNER JOIN
               categorias AS c
             ON
-              (p.id_categoria = c.id)";
+              (p.id_categoria = c.id)
+            ORDER BY
+              p.id
+            ASC";
   return mysqli_query($conn, $query);
 }
 
@@ -56,14 +59,15 @@ function removeProduct($conn, $id) {
   return false;
 }
 
-function updateProduct($conn, $id, $nome, $quant, $preco) {
+function updateProduct($conn, $id, $nome, $quant, $preco, $idCategoria) {
   if($id && is_numeric($id)) {
     $query = "UPDATE 
               produtos
             SET
               nome = '{$nome}',
               quant = '{$quant}',
-              preco = '{$preco}'
+              preco = '{$preco}',
+              id_categoria = '{$idCategoria}'
             WHERE
               id = '{$id}'
             ";
@@ -73,7 +77,7 @@ function updateProduct($conn, $id, $nome, $quant, $preco) {
 }
 
 function getCategories($conn) {
-  $query = "SELECT * FROM categorias";
+  $query = "SELECT * FROM categorias ORDER BY nome";
   return mysqli_query($conn, $query);
 }
 

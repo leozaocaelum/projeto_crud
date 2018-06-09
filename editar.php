@@ -6,13 +6,14 @@ $conn = getConn();
 
 if($conn && $_GET) {
   $prod = getProduct( getProductById($conn, $_GET['id']) );
+  $categories = getCategories($conn);
   if(!$prod) {
     header("Location: lista.php?action=edit&message=failed");
   }
 }
 
 if($conn && $_POST) {
-  $updated = updateProduct($conn, $_POST['id'], $_POST['nome'], $_POST['quant'], $_POST['preco']);
+  $updated = updateProduct($conn, $_POST['id'], $_POST['nome'], $_POST['quant'], $_POST['preco'], $_POST['categoria']);
 
   if($updated) {
     header("Location: lista.php?action=edit&message=success");
@@ -56,6 +57,23 @@ if($conn && $_POST) {
           <div class="form-group col-md-6">
             <label for="preco">Preço R$</label>
             <input type="text" name="preco" class="form-control" id="preco" placeholder="0.00" value="<?=$prod['preco']?>">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="categoria">Categoria</label>
+
+            <select class="form-control" id="categoria" name="categoria">
+              <?php while( $categ = mysqli_fetch_assoc($categories) ): ?>
+                <option value="<?=$categ['id']?>"
+      <?php if($categ['id'] == $prod['id_categoria']) { echo "selected"; } ?> >
+
+                  <?=$categ['nome']?>
+                </option>
+              <?php endwhile; ?>
+            </select>
+
           </div>
         </div>
         
