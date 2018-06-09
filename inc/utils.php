@@ -95,13 +95,15 @@ function getUser($conn, $email, $senha) {
 }
 
 function redirIfNotLogged() {
-  if( !isset($_COOKIE["USER_LOGGED"]) ) {
+  session_start();
+  if( !(isset($_SESSION["AUTH"]) && $_SESSION["AUTH"] == true) ) {
     header("Location: index.php?r=no_auth");
   }
 }
 
 function logout() {
-  if( isset($_COOKIE["USER_LOGGED"]) ) {
-    setcookie("USER_LOGGED", "", time() - 3600);
+  session_start();
+  if( isset($_SESSION["AUTH"]) && $_SESSION["AUTH"] == true ) {
+    session_destroy();
   }
 }
