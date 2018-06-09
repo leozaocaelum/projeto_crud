@@ -77,7 +77,7 @@ function updateProduct($conn, $id, $nome, $quant, $preco, $idCategoria) {
 }
 
 function getCategories($conn) {
-  $query = "SELECT * FROM categorias ORDER BY nome";
+  $query = "SELECT * FROM categorias ORDER BY nome ASC";
   return mysqli_query($conn, $query);
 }
 
