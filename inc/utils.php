@@ -81,3 +81,27 @@ function getCategories($conn) {
   return mysqli_query($conn, $query);
 }
 
+function getUser($conn, $email, $senha) {
+  $query = "SELECT
+              id, nome, email
+            FROM
+              usuarios
+            WHERE
+              email = '{$email}'
+            AND
+              senha = md5('{$senha}')
+            ";
+  return mysqli_query($conn, $query);
+}
+
+function redirIfNotLogged() {
+  if( !isset($_COOKIE["USER_LOGGED"]) ) {
+    header("Location: index.php?r=no_auth");
+  }
+}
+
+function logout() {
+  if( isset($_COOKIE["USER_LOGGED"]) ) {
+    setcookie("USER_LOGGED", "", time() - 3600);
+  }
+}

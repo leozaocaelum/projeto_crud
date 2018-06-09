@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: localhost    Database: fp_73
+-- Host: 127.0.0.1    Database: fp_73
 -- ------------------------------------------------------
 -- Server version	5.6.40
 
@@ -29,7 +29,7 @@ CREATE TABLE `produtos` (
   `quant` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-INSERT INTO `produtos` VALUES (37,'tv da copa',4000.00,20,0),(38,'book',80.00,40,0),(40,'sofa',4000.00,10,2),(41,'macbook',5000.00,100,1),(42,'tenis',200.00,100,5),(43,'livro',20.00,10,5);
+INSERT INTO `produtos` VALUES (37,'tv da copa',4000.00,20,0),(38,'book',80.00,40,0),(40,'sofa',4000.00,20,2),(41,'macbook',5000.00,100,1),(42,'tenis',200.00,100,5),(44,'Teste',20.00,10,5);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-09 10:18:28
+-- Dump completed on 2018-06-09 15:38:42

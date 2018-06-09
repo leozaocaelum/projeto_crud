@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: localhost    Database: fp_73
+-- Host: 127.0.0.1    Database: fp_73
 -- ------------------------------------------------------
 -- Server version	5.6.40
 
@@ -24,12 +24,11 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `senha` varchar(50) DEFAULT NULL,
-  `cpf` varchar(255) DEFAULT NULL,
-  `teste` int(11) DEFAULT NULL,
+  `senha` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +37,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'Leonardo','leonardo.souza@caelum.com.br','f82b3125646255ce702a3ec21f962b24'),(2,'João','john@globo.com','d3e6a58fd774f0194561fa08a0977fdd'),(3,'Maria','mary@globo.com','27d0cec54df8e1a792013324f64d3582');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-09 10:18:28
+-- Dump completed on 2018-06-09 15:38:42
