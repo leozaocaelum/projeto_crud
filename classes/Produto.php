@@ -5,6 +5,5 @@ class Produto {
   public $nome;
   public $preco;
   public $quant;
-  public $idCategoria;
-  public $nomeCategoria;
+  public $categoria;
 }
