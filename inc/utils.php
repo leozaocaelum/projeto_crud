@@ -43,10 +43,10 @@ function getProducts($conn) {
 
   while( $prod = mysqli_fetch_assoc($result) ) {
     $produto = new Produto();
-    $produto->id = $prod['id'];
-    $produto->nome = $prod['nome_produto'];
-    $produto->preco = $prod['preco'];
-    $produto->quant = $prod['quant'];
+    $produto->setId($prod['id']);
+    $produto->setNome($prod['nome_produto']);
+    $produto->setPreco($prod['preco']);
+    $produto->setQuant($prod['quant']);
 
     $produto->categoria = new Categoria();
     $produto->categoria->id = $prod['id_categoria'];
@@ -63,10 +63,10 @@ function getProduct($result) {
 }
 
 function addProduct($conn, $produto) {
-  $query = "INSERT INTO produtos
+  echo $query = "INSERT INTO produtos
               ( nome, preco, quant, id_categoria )
             VALUES
-              ( '{$produto->nome}', {$produto->preco}, '{$produto->quant}', '{$produto->categoria->id}' )";
+              ( '{$produto->getNome()}', {$produto->getPreco()}, '{$produto->getQuant()}', '{$produto->categoria->id}' )";
   
   return mysqli_query($conn, $query);
 }

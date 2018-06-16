@@ -6,9 +6,9 @@ $page = "CADASTRO";
 $conn = getConn();
 if($conn && $_POST) {
   $produto = new Produto();
-  $produto->nome = $_POST['nome'];
-  $produto->preco = $_POST['preco'];
-  $produto->quant = $_POST['quant'];
+  $produto->setNome($_POST['nome']);
+  $produto->setPreco($_POST['preco']);
+  $produto->setQuant($_POST['quant']);
   
   $produto->categoria = new Categoria();
   $produto->categoria->id = $_POST['id_categoria'];
